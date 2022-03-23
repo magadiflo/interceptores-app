@@ -18,7 +18,7 @@ export class AppComponent {
         },
         error: err => {
           console.log('Error en el app component');
-          console.log(err);    
+          console.log(err);
         }
       });
   }

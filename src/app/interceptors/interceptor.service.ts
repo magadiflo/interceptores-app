@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
+import { Observable, throwError, catchError } from 'rxjs';
 
 /**
  * Un Interceptor no es nada más que un servicio
@@ -20,7 +20,25 @@ export class InterceptorService implements HttpInterceptor {
   constructor() { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log('Pasó por el interceptor');  
-    return next.handle(req);
+    console.log('Pasó por el interceptor');
+
+    const headers = new HttpHeaders({
+      'x-token-usuario': 'ABCDEFGHIJ123456SDFASDF'
+    });
+
+    //Agregando el header al request
+    const reqClone = req.clone({
+      headers
+    });
+
+    return next.handle(reqClone)
+      .pipe(
+        catchError(this.manejarError)
+      )
+  }
+
+  manejarError(error: HttpErrorResponse) {
+    console.log('Hubo un error: ', error);
+    return throwError(() => new Error('Error personalizado desde método manejarError e interceptor!!!'));
   }
 }
