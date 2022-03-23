@@ -14,11 +14,11 @@ export class UsuariosService {
     let params = new HttpParams().append('page', '2');
     params = params.append('nombre', 'martin');
 
-    const headers = new HttpHeaders({
-      'x-token-usuario': 'ABCDEFGHIJ123456SDFASDF'
-    });
+    // const headers = new HttpHeaders({
+    //   'x-token-usuario': 'ABCDEFGHIJ123456SDFASDF'
+    // });
 
-    return this.http.get(`https://reqres000.in/api/user`, { params, headers })
+    return this.http.get(`https://reqres.in/api/user`, { params })
       .pipe(
         map((resp: any) => resp.data),
         catchError(this.manejarError)
