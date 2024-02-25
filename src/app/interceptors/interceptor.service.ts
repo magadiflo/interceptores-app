@@ -4,12 +4,12 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpHeaders, Http
 import { Observable, throwError, catchError } from 'rxjs';
 
 /**
- * Un Interceptor no es nada más que un servicio
- * que se encarga de interceptar las peticiones HTTP. 
- * Algunos reemplazan el Service por Interceptor en el
- * nombre de la clase para que se más explícito,
- * en nuestro caso lo dejaremos tal como se crea un
- * servicio
+ ** Un Interceptor no es nada más que un servicio
+ ** que se encarga de interceptar las peticiones HTTP.
+ ** Algunos reemplazan el Service por Interceptor en el
+ ** nombre de la clase para que se más explícito,
+ ** en nuestro caso lo dejaremos tal como se crea un
+ ** servicio
  */
 
 @Injectable({
